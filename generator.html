@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Generator | QuickForm</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-bolt logo-icon"></i>
+                <span>QuickForm</span>
+            </a>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <section id="generator" class="generator-section">
+        <div class="generator-container">
+            <div class="form-creator">
+                <h2>Create Your Form</h2>
+                <p class="form-description">Describe what you need and our AI will generate the perfect form for you.</p>
+                
+                <form id="topic-form">
+                    <div class="form-group">
+                        <label for="topic">What's your form about? <span class="required">*</span></label>
+                        <textarea id="topic" required placeholder="e.g. 'A customer feedback form for my coffee shop'"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formType">Form Type</label>
+                            <div class="form-type-dropdown" id="formTypeDropdown">
+                                <select id="formType" required>
+                                    <option value="quiz">AI Quiz</option>
+                                    <option value="feedback">Feedback Form</option>
+                                    <option value="application">Application Form</option>
+                                    <option value="contact">Contact Form</option>
+                                    <option value="registration">Registration Form</option>
+                                    <option value="employment">Employment Form</option>
+                                    <option value="membership">Membership Form</option>
+                                    <option value="educational">Educational Form</option>
+                                    <option value="evaluation">Evaluation Form</option>
+                                </select>
+                                <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="questionCount">Number of Questions <span class="required">*</span></label>
+                            <input type="number" id="questionCount" min="1" max="20" value="5" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="generate-button">
+                        <i class="fas fa-magic"></i> Generate Questions
+                    </button>
+                </form>
+            </div>
+            
+            <div class="preview-section">
+                <h3>Form Preview</h3>
+                <div id="preview">
+                    <div id="placeholder-message" class="placeholder-message">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>Your generated questions will appear here</p>
+                    </div>
+                    <ol id="question-list" class="hidden"></ol>
+                    <div class="button-group preview-actions hidden">
+                        <button id="regenerate" class="secondary-button">
+                            <i class="fas fa-sync-alt"></i> Regenerate
+                        </button>
+                        <button id="create-form" class="primary-button">
+                            <i class="fas fa-check"></i> Create Form
+                        </button>
+                    </div>
+                    <div id="form-link" class="hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="loading-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="spinner"></div>
+            <h3 id="loading-text">Generating your form...</h3>
+            <p>This usually takes about 10-15 seconds</p>
+        </div>
+    </div>
+
+    <div id="email-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Almost Done!</h3>
+            <p>Enter your Google account email to create your form</p>
+            
+            <div class="form-group">
+                <input type="email" id="email-input" placeholder="yourname@gmail.com" required>
+                <p class="form-hint">We'll share the form with this email address</p>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="cancel-button">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="confirm-button">
+                    <i class="fas fa-magic"></i> Create Form
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content success">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Form Created Successfully!</h3>
+            <p id="success-message">Your form has been created and shared with your Google account.</p>
+            <div class="success-actions">
+                <a id="edit-form-link" href="#" target="_blank" class="primary-button">
+                    <i class="fas fa-edit"></i> Edit Form
+                </a>
+                <button class="secondary-button" onclick="window.location.href='generator.html'">
+                    Create Another
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-transition"></div>
+    <script src="./script.js"></script>
+</body>
+</html>
